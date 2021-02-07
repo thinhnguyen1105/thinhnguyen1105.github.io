@@ -202,9 +202,23 @@ footer a {
 
 @media (max-width: 52em) {
   .homepage h1.site-title {
-    font-size: 3em;
+    font-size: 2em;
   }
 }
+
+.homepage div.site-description {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+@media (max-width: 52em) {
+  .homepage div.site-description {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+  }
+}
+
 
 .homepage h1.headline {
   font-size: 3em;
@@ -217,9 +231,18 @@ footer a {
     padding-right: 2rem;
   }
 }
-
+.homepage .hero-logo {
+  display: flex;
+  justify-content: center;
+} 
 .homepage .hero-logo img {
   width: 100%;
+}
+
+@media (max-width: 52em) {
+  .homepage .hero-logo img  {
+    width: 80%;
+  }
 }
 
 .homepage section.categories,
