@@ -1,0 +1,4 @@
+baseURL = "https://thinhnguyen1105.github.io/"
+languageCode = "en-us"
+title = "Let's code with cat"
+theme="base16"

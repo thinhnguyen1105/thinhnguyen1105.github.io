@@ -1,0 +1,8 @@
+[submodule "thinhnguyen1105blog/thinhnguyen1105.github.io"]
+	path = thinhnguyen1105blog/thinhnguyen1105.github.io
+	url = https://github.com/thinhnguyen1105/thinhnguyen1105.github.io.git
+	branch = main
+[submodule "thinhnguyen1105blog/public"]
+	path = thinhnguyen1105blog/public
+	url = https://github.com/thinhnguyen1105/thinhnguyen1105.github.io.git
+	branch = main
