@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Let&#39;s code with cat</title>
-    <link>https://codewithcat.live/post/</link>
-    <description>Recent content in Posts on Let&#39;s code with cat</description>
+    <title>Development on Let&#39;s code with cat</title>
+    <link>https://codewithcat.live/tags/development/</link>
+    <description>Recent content in Development on Let&#39;s code with cat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Feb 2021 23:36:09 +0700</lastBuildDate><atom:link href="https://codewithcat.live/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Feb 2021 23:36:09 +0700</lastBuildDate><atom:link href="https://codewithcat.live/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Donate</title>
+      <link>https://codewithcat.live/pages/donate/</link>
+      <pubDate>Sat, 06 Feb 2021 23:36:09 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/pages/donate/</guid>
+      <description>Mua cho mình cốc cafe để có động lực viết blog nhé =)) Buy me a coffe ☕️</description>
+    </item>
+    
     <item>
       <title>Ngày đầu viết blog</title>
       <link>https://codewithcat.live/post/introduction/</link>

@@ -8,12 +8,12 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 06 Feb 2021 23:36:09 +0700</lastBuildDate><atom:link href="https://codewithcat.live/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Book</title>
-      <link>https://codewithcat.live/pages/book/</link>
+      <title>Donate</title>
+      <link>https://codewithcat.live/pages/donate/</link>
       <pubDate>Sat, 06 Feb 2021 23:36:09 +0700</pubDate>
       
-      <guid>https://codewithcat.live/pages/book/</guid>
-      <description></description>
+      <guid>https://codewithcat.live/pages/donate/</guid>
+      <description>Mua cho mình cốc cafe để có động lực viết blog nhé =)) Buy me a coffe ☕️</description>
     </item>
     
     <item>
@@ -23,6 +23,15 @@
       
       <guid>https://codewithcat.live/post/introduction/</guid>
       <description>Vậy là mình cũng đã tạo thành công 1 trang blog cho riêng mình. Mình cũng dự định làm từ lâu rồi nhưng thời gian qua quá bận với công việc nên chưa thể làm một cái gì đó cho bản thân. Đợt nghỉ tết này mình đã quyết tâm làm được 1 trang blog để có thể chia sẻ những suy nghĩ và kiến thức về công nghệ mà mình đã học hỏi được trong thời gian qua tại đây.</description>
+    </item>
+    
+    <item>
+      <title>VUEJS và những điều chưa kể</title>
+      <link>https://codewithcat.live/post/testing-vue/</link>
+      <pubDate>Sat, 06 Feb 2021 23:36:09 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/post/testing-vue/</guid>
+      <description>Quá nhiều kỉ niệm với VUEJS Mình sẽ kể cho các bạn nghe hành trình của mình</description>
     </item>
     
   </channel>
