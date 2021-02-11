@@ -6,23 +6,33 @@
     <description>Recent content in Posts on Let&#39;s code with cat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Feb 2021 23:36:09 +0700</lastBuildDate><atom:link href="https://codewithcat.live/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Feb 2021 21:18:19 +0700</lastBuildDate><atom:link href="https://codewithcat.live/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Ngày đầu viết blog</title>
+      <title>Tổng kết 2020 🌏</title>
+      <link>https://codewithcat.live/post/report2020/</link>
+      <pubDate>Thu, 11 Feb 2021 21:18:19 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/post/report2020/</guid>
+      <description>Vậy là cũng kết thúc một năm 2020 đầy sóng gió và khó khăn. Với mọi người, có lẽ đây là một năm không tốt vì dịch bệnh và nhiều tin xấu xảy ra trong năm. Nhưng với mình, đây là một năm mình học được rất nhiều về tất cả những điều xảy ra xung quanh mình và làm bước đệm để mình có thể đi xa hơn trong tương lai 😚</description>
+    </item>
+    
+    <item>
+      <title>Làm Automation Test như phim hoạt hình như thế nào ? 😼</title>
+      <link>https://codewithcat.live/post/cypress/</link>
+      <pubDate>Thu, 11 Feb 2021 19:53:14 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/post/cypress/</guid>
+      <description>Cho ai chưa biết Automation Test thì nó là một công cụ để giúp kiểm tra một hệ thống có hoạt động chính xác như mình mong muốn không (giống như thầy giáo đi chấm bài ấy hề hề )
+1. WHY AUTOMATION TEST ? Chả là dạo gần đây khi dự án mình đang làm đã gần đi vào ổn định ( và mong muốn nó luôn ổn định trong tương lai ) nên mình đã đi học đòi các bác trên mạng làm automation test để xem mặt mũi em nó như thế nào.</description>
+    </item>
+    
+    <item>
+      <title>Ngày đầu viết blog 👈</title>
       <link>https://codewithcat.live/post/introduction/</link>
       <pubDate>Sat, 06 Feb 2021 23:36:09 +0700</pubDate>
       
       <guid>https://codewithcat.live/post/introduction/</guid>
       <description>Vậy là mình cũng đã tạo thành công 1 trang blog cho riêng mình. Mình cũng dự định làm từ lâu rồi nhưng thời gian qua quá bận với công việc nên chưa thể làm một cái gì đó cho bản thân. Đợt nghỉ tết này mình đã quyết tâm làm được 1 trang blog để có thể chia sẻ những suy nghĩ và kiến thức về công nghệ mà mình đã học hỏi được trong thời gian qua tại đây.</description>
-    </item>
-    
-    <item>
-      <title>VUEJS và những điều chưa kể</title>
-      <link>https://codewithcat.live/post/testing-vue/</link>
-      <pubDate>Sat, 06 Feb 2021 23:36:09 +0700</pubDate>
-      
-      <guid>https://codewithcat.live/post/testing-vue/</guid>
-      <description>Quá nhiều kỉ niệm với VUEJS Mình sẽ kể cho các bạn nghe hành trình của mình</description>
     </item>
     
   </channel>

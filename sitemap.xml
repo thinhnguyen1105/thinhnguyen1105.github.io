@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://codewithcat.live/</loc>
+    <lastmod>2021-02-11T21:18:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codewithcat.live/post/</loc>
+    <lastmod>2021-02-11T21:18:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codewithcat.live/post/report2020/</loc>
+    <lastmod>2021-02-11T21:18:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codewithcat.live/post/cypress/</loc>
+    <lastmod>2021-02-11T19:53:14+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codewithcat.live/tags/</loc>
+    <lastmod>2021-02-11T19:53:14+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codewithcat.live/tags/testing/</loc>
+    <lastmod>2021-02-11T19:53:14+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://codewithcat.live/tags/development/</loc>
     <lastmod>2021-02-07T15:22:07+07:00</lastmod>
   </url>
@@ -13,37 +43,12 @@
   </url>
   
   <url>
-    <loc>https://codewithcat.live/</loc>
-    <lastmod>2021-02-07T15:22:07+07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://codewithcat.live/post/introduction/</loc>
     <lastmod>2021-02-07T15:22:07+07:00</lastmod>
   </url>
   
   <url>
     <loc>https://codewithcat.live/pages/</loc>
-    <lastmod>2021-02-06T23:36:09+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codewithcat.live/post/</loc>
-    <lastmod>2021-02-07T15:22:07+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codewithcat.live/tags/</loc>
-    <lastmod>2021-02-07T15:22:07+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codewithcat.live/tags/vim/</loc>
-    <lastmod>2021-02-06T23:36:09+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codewithcat.live/post/testing-vue/</loc>
     <lastmod>2021-02-06T23:36:09+07:00</lastmod>
   </url>
   

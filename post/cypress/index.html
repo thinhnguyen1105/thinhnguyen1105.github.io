@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="Thinh Nguyen">
+<meta name="generator" content="Hugo 0.80.0" />
+
+  <meta itemprop="image" content="https://codewithcat.live/image/thumbnail.jpg" />
+  <meta property="og:image" content="https://codewithcat.live/image/thumbnail.jpg" />
+  <meta name="twitter:image" content="https://codewithcat.live/image/thumbnail.jpg" />
+  <meta name="twitter:image:src" content="https://codewithcat.live/image/thumbnail.jpg" /> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://codewithcat.live/css/style.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="https://codewithcat.live/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://codewithcat.live/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://codewithcat.live/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://codewithcat.live/favicon-16x16.png">
+<link rel="manifest" href="https://codewithcat.live/site.webmanifest">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" type="text/css">
+<link rel="alternate" href="https://codewithcat.live/index.xml" type="application/rss+xml" title="Let&#39;s code with cat">
+<title>Thinh Nguyen | Journey</title>
+</head>
+<body>
+
+<header>
+  <div class="container clearfix">
+  <a href="https://codewithcat.live/"><img href="https://codewithcat.live/" style="width: 36%;" src="https://codewithcat.live/image/logo-v3.svg"></a>
+    <div class="right">
+      
+        
+        <a class="path" href="https://codewithcat.live/pages/donate/">Donate</a>
+      
+        |
+        <a class="path" href="https://codewithcat.live/pages/">Pages</a>
+      
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+
+<main role="main" class="article">
+  
+<article class="single" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+
+    <span class="key">published on</span>
+    <span class="val"><time itemprop="datePublished" datetime="2021-02-11">February 11, 2021</time></span>
+
+
+
+    <br>
+    <span class="key">tags:</span>
+    <span class="val">
+
+        <a href="https://codewithcat.live/tags/testing">Testing</a>
+
+    </span>
+
+  </div>
+  <h1 class="headline" itemprop="headline">Làm Automation Test như phim hoạt hình như thế nào ? 😼</h1>
+  <section class="body" itemprop="articleBody">
+    <p>Cho ai chưa biết Automation Test thì nó là một công cụ để giúp kiểm tra một hệ thống có hoạt động chính xác như mình mong muốn không (giống như thầy giáo đi chấm bài ấy hề hề )</p>
+<h1 id="1-why-automation-test-">1. WHY AUTOMATION TEST ?</h1>
+<p>Chả là dạo gần đây khi dự án mình đang làm đã gần đi vào ổn định ( và mong muốn nó luôn ổn định trong tương lai ) nên mình đã đi học đòi các bác trên mạng làm automation test để xem mặt mũi em nó như thế nào.</p>
+<p>Chuyện là trước khi làm thì có nghe qua Selenium khá là nổi tiếng mà trong giới công nghệ các bác truyền tai nhau. Nhưng khi implement vào dự án thì cũng khá lằng nhằng phức tạp nên thôi bỏ vì 2 lí do, 1 là nó phải code bằng javascript và 2 là nó phải dễ code để tester bên mình có thể học đc =)) vậy là tiếp tục dev front-end mà k có automation, sai rồi lại sửa.</p>
+<p>Khoảng 2 tháng sau trong một hôm rảnh rỗi thì mình xem đc 1 clip về Cypress. Lạy chúa đây chính là thứ mà mình đã tìm kiếm bấy lâu nay ( thứ nhất là code bằng javascript và thứ hai là nó có UI quá đẹp và preview như phim hoạt hình ). Và thế là mình quyết định dùng luôn em nó</p>
+<h1 id="2how-to-install-">2.HOW TO INSTALL ?</h1>
+<p>Cài đặt cũng khá là đơn giản</p>
+<p>Bước 1:  ở terminal thì cài đặt cypress bằng lệnh ( nhớ cài node.js vào máy trước thì mới chạy đc npm )</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">cypress</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">save</span><span style="color:#f92672">-</span><span style="color:#a6e22e">dev</span>
+</code></pre></div><p>Đúng là tool automation nên chạy install cũng automation luôn cực tiện</p>
+<p>OK, install xong thì chạy lệnh để mở cypress</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">.<span style="color:#f92672">/</span><span style="color:#a6e22e">node_modules</span><span style="color:#f92672">/</span>.<span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cypress</span> <span style="color:#a6e22e">open</span>
+</code></pre></div><p>Sau khi cypress chạy, nó sẽ mở lên 1 tab chrome để chạy automation test, nhớ allow cho nó có quyền truy cập nhé !</p>
+<p>Vậy là đã xong, trong cypress có rất nhiều modules đã được viết sẵn. Bạn chỉ cần click vào đó và xem thử cách nó hoạt động như thế này. Sau khi chọn một test case trong integration test thì chỉ việc ấn run là nó sẽ chạy và chỉ việc ngồi xem hoạt hình thui =)))</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/VvLocgtCQnY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h1 id="3-evaluate">3. EVALUATE</h1>
+<p>Sau một thời gian đọc document và tìm hiểu em nó thì mình thấy em nó khá là tiện và mình nghĩ ai cũng có thể viết được. Cụ thể, các điểm mạnh của em nó như sau</p>
+<h2 id="1-query-element">1. Query element</h2>
+<p>Đại khái là mình sẽ có một bộ query để tìm ra 1 hoặc nhiều element xuất hiện trên trang web ( VD: button, input &hellip;), điểm mạnh của Cypress là bạn có thể tìm kiếm theo nội dung hiển thị hoặc các thuộc tính của thẻ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// Tìm kiếm theo nội dung
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#39;Đăng nhập&#39;</span>)
+<span style="color:#75715e">// Tìm kiếm theo attributes
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`[data-test*=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">selector</span><span style="color:#e6db74">}</span><span style="color:#e6db74">]`</span>, ...<span style="color:#a6e22e">args</span>);
+<span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">getBySel</span>(<span style="color:#e6db74">&#34;list-skeleton&#34;</span>).<span style="color:#a6e22e">should</span>(<span style="color:#e6db74">&#34;not.exist&#34;</span>);
+<span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;[type=email]&#39;</span>)
+<span style="color:#a6e22e">ct</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;[type=text&#39;</span>).<span style="color:#a6e22e">eq</span>(<span style="color:#ae81ff">5</span>)
+</code></pre></div><h2 id="2-interactive">2. Interactive</h2>
+<p>Vậy là sau khi đã chọn được chính xác thẻ cần tương tác thì mình sẽ phải bắt đầu tương tác, thường thì trên website sẽ là nhập vào ô input hoặc là click ( cypress support tất cả các dạng tương tác khác như scroll , checkbox nhưng để đơn giản mình sẽ chỉ liệt kê 2 cái hay dùng nhất thui nha )</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// click 
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;.action-labels&gt;.label&#39;</span>).<span style="color:#a6e22e">click</span>({ <span style="color:#a6e22e">multiple</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> })
+<span style="color:#75715e">// input
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;.action-email&#39;</span>)
+      .<span style="color:#a6e22e">type</span>(<span style="color:#e6db74">&#39;fake@email.com&#39;</span>).<span style="color:#a6e22e">should</span>(<span style="color:#e6db74">&#39;have.value&#39;</span>, <span style="color:#e6db74">&#39;fake@email.com&#39;</span>)
+</code></pre></div><h2 id="3-assertion">3. Assertion</h2>
+<p>Sau khi tương tác xong thì mình sẽ cần đánh giá kết quả sau khi thực hiện hành động đó có đúng hay không, nếu đúng thì pass test case còn nếu sai thì nó sẽ báo lỗi nhé =))</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">cy</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;.assertion-table&#39;</span>)
+.<span style="color:#a6e22e">find</span>(<span style="color:#e6db74">&#39;tbody tr:last&#39;</span>)
+<span style="color:#75715e">// finds first &lt;td&gt; element with text content matching regular expression
+</span><span style="color:#75715e"></span>.<span style="color:#a6e22e">contains</span>(<span style="color:#e6db74">&#39;td&#39;</span>, <span style="color:#e6db74">/column content/i</span>)
+.<span style="color:#a6e22e">should</span>(<span style="color:#e6db74">&#39;be.visible&#39;</span>)
+</code></pre></div><p>Ngoài ra Cypress có hỗ trợ theo dõi API, theo dõi đường dẫn và nhiều chức năng khác nữa mà mình thấy khá thú vị. Bài này mình chỉ giới thiệu sơ qua về công cụ, ai muốn tìm hiểu sâu hơn thì có thể lên trang chủ của <a href="https://codewithcat.live/" title="Cypress">Cypress</a> để đọc document nhé ;)</p>
+
+  </section>
+</article>
+<div id="graphcomment"></div>
+<script type="text/javascript">
+
+   
+
+  
+  window.gc_params = {
+    graphcomment_id: 'codewithcat110597',
+
+    
+    fixed_header_height: 0,
+  };
+
+   
+
+  
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.src = 'https://graphcomment.com/js/integration.js?' + Math.round(Math.random() * 1e8);
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+
+</script>
+
+</main>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="copyright">&copy; 2021 Let&#39;s code with cat - <a rel="license" href="https://www.facebook.com/thinhnguyen1105/">Created by Thinh Nguyen</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
+
