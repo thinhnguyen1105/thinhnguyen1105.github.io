@@ -1,4 +1,17 @@
-baseURL = "https://thinhnguyen1105.github.io/"
+baseURL = "https://codewithcat.live/"
 languageCode = "en-us"
 title = "Let's code with cat"
 theme="base16"
+
+enableEmoji = true
+enableGitInfo = true
+enableRobotsTXT = true
+canonifyURLs = true
+
+[params]
+  author = "Thinh Nguyen"
+  github = "https://github.com/thinhnguyen1105"
+  facebook = "https://facebook.com/thinhnguyen1105"
+  og_image = "/image/thumbnail.jpg"
+  ogimage = "/image/thumbnail.jpg"
+  sitename = "Thinh Nguyen's Journey"
