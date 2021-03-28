@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title itemprop="name">Tối ưu hoá hệ thống VueJS (Phần 1) | Let&#39;s code with cat</title>
+<meta property="og:title" content="Tối ưu hoá hệ thống VueJS (Phần 1) | Let&#39;s code with cat" />
+<meta name="twitter:title" content="Tối ưu hoá hệ thống VueJS (Phần 1) | Let&#39;s code with cat" />
+<meta itemprop="name" content="Tối ưu hoá hệ thống VueJS (Phần 1) | Let&#39;s code with cat" />
+<meta name="application-name" content="Tối ưu hoá hệ thống VueJS (Phần 1) | Let&#39;s code with cat" />
+<meta property="og:site_name" content="Thinh Nguyen&#39;s Journey" />
+<meta name="description" content="Sau một thời gian làm việc với hệ thống web, đặc biệt là 2 năm qua với VueJs">
+<meta name="author" content="Thinh Nguyen">
+<meta name="generator" content="Hugo 0.80.0" />
+ 
+  <meta itemprop="image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part1.png" />
+  <meta property="og:image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part1.png" /> 
+  <meta name="twitter:image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part1.png" />
+  <meta name="twitter:image:src" content="https://codewithcat.live/image/posts/vuejs/vuejs-part1.png" /> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://codewithcat.live/css/style.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="https://codewithcat.live/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://codewithcat.live/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://codewithcat.live/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://codewithcat.live/favicon-16x16.png">
+<link rel="manifest" href="https://codewithcat.live/site.webmanifest">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" type="text/css">
+<link rel="alternate" href="https://codewithcat.live/index.xml" type="application/rss+xml" title="Let&#39;s code with cat">
+<title>Thinh Nguyen | Journey</title>
+</head>
+<body>
+
+<header>
+  <div class="container clearfix">
+  <a href="https://codewithcat.live/"><img href="https://codewithcat.live/" style="width: 36%;" src="https://codewithcat.live/image/logo-v3.svg"></a>
+    <div class="right">
+      
+        
+        <a class="path" href="https://codewithcat.live/pages/donate/">Donate</a>
+      
+        |
+        <a class="path" href="https://codewithcat.live/pages/">Pages</a>
+      
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+
+<main role="main" class="article">
+  
+<article class="single" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+
+    <span class="key">published on</span>
+    <span class="val"><time itemprop="datePublished" datetime="2021-03-28">March 28, 2021</time></span>
+
+
+
+    <br>
+    <span class="key">tags:</span>
+    <span class="val">
+
+        <a href="https://codewithcat.live/tags/development">Development</a>
+
+        <a href="https://codewithcat.live/tags/front-end">Front-end</a>
+
+        <a href="https://codewithcat.live/tags/vuejs">VueJS</a>
+
+    </span>
+
+  </div>
+  <h1 class="headline" itemprop="headline">Tối ưu hoá hệ thống VueJS (Phần 1)</h1>
+  <section class="body" itemprop="articleBody">
+    <p>Sau một thời gian làm việc với hệ thống web, đặc biệt là 2 năm qua với VueJs mình nhận thấy để có thể chạy được 1 PWA ( Progressive web app ) tốt thì cần một cái template project 🧑‍💻 thật chuẩn trước khi bắt tay vào xây dựng dự án. Ý mình <strong>template</strong> ở đây là một bộ <strong>source code</strong> chứa tất cả những practice tối ưu giúp cho <strong>dev code nhanh hơn</strong>, hệ thống chạy <strong>ổn định hơn, nhẹ hơn</strong> và sử dụng được hết những điểm mạnh của framework mình đang dùng ( có đồ trong tay phải biết dùng đúng k các bác =)) ). Sẽ có một số bạn bảo rằng <em>template tối ưu thì có đầy trên mạng, sao không lên đấy lấy mà dùng cho nhanh.</em> Đúng và sai, template trên mạng có rất nhiều, nhưng nếu không hiểu cách người ta setup hệ thống như nào thì đến lúc hệ thống chạy chậm hay xảy ra vấn đề thì bó tay 😧. Không biết fix kiểu gì và khi đó hệ thống đã quá to rồi, nhận ra phải đập đi làm lại thì quả là một vấn đề lớn. Vậy nên hôm nay mình sẽ chia sẻ vài tips để xây dựng hệ thống có thể grow up một cách dễ dàng với VueJS nhé 😙😙😙</p>
+<p>Sau đây mình sẽ hướng dẫn cách để làm ra một template của chính bạn và hiểu sâu đến từng dòng code trong project đó nhé. Vậy nên nếu có máy tính thì mở ra thực hành ngay thuii 😆😆😆</p>
+<h2 id="bước-1-clone-project-vuejs">Bước 1: Clone project VueJS</h2>
+<p>Đúng vậy, dùng framework thì phải lấy từ chỗ nhà sản xuất cung cấp. Trong ví dụ này mình sẽ dùng Vue2 để làm template nhé</p>
+<p>Đầu tiên các bạn sẽ cài vue bằng cách gõ lệnh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"> <span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">vue</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">vue</span> <span style="color:#a6e22e">init</span>
+</code></pre></div><p>Các bạn cứ cài theo hướng dẫn của vue, sau khi cài xong sẽ được một project khá thô sơ, và nhiệm vụ của mình bây giờ là đắp da đắp thịt cho nó để trở thành một người có ích cho xã hội 😄</p>
+<h2 id="bước-2-tối-ưu-cách-gọi-api-bằng-factory-design-pattern">Bước 2: Tối ưu cách gọi API bằng factory design pattern</h2>
+<p>Vâng đúng vậy, một project chạy bằng Vue ở phía client sẽ phải gọi API đến server để có thể thêm, sửa, xoá và lấy dữ liệu. Để client gọi được request một cách tối ưu nhất thì ta cần đến một cái gọi là factory design pattern. Nôm na là một cái nhà máy chuyên sản xuất ra các request API, mà đã là nhà máy thì tất nhiên là phải nhanh hơn và tự động hơn rồi</p>
+<p>Để tạo ra được trái tim của nhà máy thì mình sẽ tạo ra một file theo đường dẫn như sau src/api/core/index.js. File này có mục đích là tạo ra tất cả các request theo chuẩn Restful API. Từ đó có thể tái sử dụng được API ở mỗi đối tượng mà mình cần gọi dữ liệu.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">	<span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">params</span>, <span style="color:#a6e22e">option</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(
+			<span style="color:#a6e22e">BASE_URL</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-count&#39;</span>,
+			{
+				<span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> {...<span style="color:#a6e22e">params</span>},
+			},
+			<span style="color:#a6e22e">option</span>
+		),
+	<span style="color:#a6e22e">fetch</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">params</span>, <span style="color:#a6e22e">option</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(
+			<span style="color:#a6e22e">BASE_URL</span>,
+			{
+				<span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> {...<span style="color:#a6e22e">params</span>},
+			},
+			<span style="color:#a6e22e">option</span>
+		),
+	<span style="color:#a6e22e">fetchOne</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">option</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(
+			<span style="color:#a6e22e">BASE_URL</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">id</span>,
+			<span style="color:#a6e22e">option</span>
+		),
+	<span style="color:#a6e22e">create</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">params</span>, <span style="color:#a6e22e">options</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">post</span>(
+			<span style="color:#a6e22e">BASE_URL</span>,
+			{...<span style="color:#a6e22e">params</span>},
+			<span style="color:#a6e22e">options</span>
+		),
+	<span style="color:#a6e22e">createMany</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">params</span>, <span style="color:#a6e22e">options</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">post</span>(
+			<span style="color:#a6e22e">BASE_URL</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/create-many&#39;</span>,
+			{...<span style="color:#a6e22e">params</span>},
+			<span style="color:#a6e22e">options</span>
+		),
+	<span style="color:#a6e22e">update</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">params</span>, <span style="color:#a6e22e">option</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">put</span>(
+			<span style="color:#a6e22e">BASE_URL</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">`/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+			<span style="color:#a6e22e">params</span>,
+			<span style="color:#a6e22e">option</span>
+		),
+	<span style="color:#66d9ef">delete</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">option</span>) =&gt;
+		<span style="color:#a6e22e">axios</span>.<span style="color:#66d9ef">delete</span>(
+			<span style="color:#a6e22e">BASE_URL</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">`/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+			<span style="color:#a6e22e">option</span>
+		)
+</code></pre></div><p>Để dùng được core thì mình sẽ tạo ra 1 repository để sử dụng core trong đó</p>
+<p>src/api/repository/vendorRepository. Sau khi tạo xong vendorRepository thì mình chỉ cần gọi ra core và thay vào url và params tương ứng và từ nay về sau, mỗi khi mình cần gọi fetch mình chỉ cần gọi ra CoreRepository là nó sẽ xử lý hết cho mình, nhanh phải k nào hehe 😎</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fetch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">params</span> =&gt; {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">CoreRepository</span>(<span style="color:#a6e22e">baseURL</span>).<span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">params</span>)
+}
+</code></pre></div><h2 id="bước-3--tự-động-tạo-store-khi-thêm-file">Bước 3:  Tự động tạo store khi thêm file</h2>
+<p>Nếu như bạn nào đã từng code vue r thì chắc hẳn sẽ biết đến vuex, một thư viện quản lý state tương tự redux ở react. Sẽ thật phiền nếu như mỗi khi chúng ta thêm một đối tượng mới mà lại phải đi khai báo lại store, vì vậy mình có sử dụng 1 trick để có thể tự động khai báo store cho vuex nếu một file mới được thêm vào bằng cách như sau</p>
+<p>Tạo 1 file như sau /src/store/modules/index.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">requireModule</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">context</span>(<span style="color:#e6db74">&#39;.&#39;</span>, <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">/\.js$/</span>)
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modules</span> <span style="color:#f92672">=</span> {}
+
+<span style="color:#a6e22e">requireModule</span>.<span style="color:#a6e22e">keys</span>().<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">fileName</span> =&gt; {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileName</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;./index.js&#39;</span>) <span style="color:#66d9ef">return</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">moduleName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fileName</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/(\.\/|\.js)/g</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+  <span style="color:#a6e22e">modules</span>[<span style="color:#a6e22e">moduleName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">requireModule</span>(<span style="color:#a6e22e">fileName</span>).<span style="color:#66d9ef">default</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">modules</span>
+</code></pre></div><p>Nhìn vào code trên thì ta thấy file này sẽ chạy một vòng lặp qua tất cả các file js đang ở thư mục modules. Nếu fileName là index.js thì bỏ qua còn lại thì sẽ truyền hết vào biến modules để vuex tạo ra store. Đơn giản nhưng hiệu quả phải không nào =)) , từ bây giờ chỉ cần thêm file vào project mà không cần quan tâm khai báo store nữa luôn, cứ thế mà dùng hehe 🐥</p>
+<h2 id="bước-4-tạo-global-components-trong-vue-gọi-ở-khắp-mọi-nơi">Bước 4: Tạo global components trong Vue gọi ở khắp mọi nơi</h2>
+<p>Chắc hẳn bạn đã từng gặp trường hợp muốn dùng một component nào đó như cái nút thì phải gọi ra component mình đã code trước đấy là <!-- raw HTML omitted --> hoặc nếu bạn custom thêm thì phải gọi ra <!-- raw HTML omitted --> và cứ mỗi lần gọi bạn sẽ phải import components đấy, khai báo components rồi với được sử dụng. Nhưng với kiểu import dưới dây, bạn đơn giản chỉ cần gọi thẻ <!-- raw HTML omitted --> trong vue mà không cần phải import thêm bất cứ dòng code nào</p>
+<p>Cách làm:</p>
+<p>tạo một file /src/global/index.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">requireComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">context</span>(<span style="color:#e6db74">&#39;.&#39;</span>, <span style="color:#66d9ef">false</span>, <span style="color:#e6db74">/[\w-]+\.vue$/</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">global</span> <span style="color:#f92672">=</span> {
+  <span style="color:#66d9ef">import</span>() {
+    <span style="color:#a6e22e">requireComponent</span>.<span style="color:#a6e22e">keys</span>().<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">fileName</span> =&gt; {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">componentConfig</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">requireComponent</span>(<span style="color:#a6e22e">fileName</span>)
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">componentName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fileName</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/^\.\//</span>, <span style="color:#e6db74">&#39;&#39;</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\.\w+$/</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+      <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#a6e22e">componentName</span>, <span style="color:#a6e22e">componentConfig</span>.<span style="color:#66d9ef">default</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">componentConfig</span>)
+    })
+  }
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">global</span>
+</code></pre></div><p>File này có nhiệm vụ đọc hết tất cả các file trong folder global, và <strong>tự động import vào vue component</strong>, từ đó bạn có thể sử dụng ở bất kì nơi nào trong project mà không cần phải import. Lại tiện thêm một phát nữa</p>
+<p>(&hellip;. còn tiếp)</p>
+
+  </section>
+</article>
+<div id="graphcomment"></div>
+<script type="text/javascript">
+
+   
+
+  
+  window.gc_params = {
+    graphcomment_id: 'codewithcat110597',
+
+    
+    fixed_header_height: 0,
+  };
+
+   
+
+  
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.src = 'https://graphcomment.com/js/integration.js?' + Math.round(Math.random() * 1e8);
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+
+</script>
+
+</main>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="copyright">&copy; 2021 Let&#39;s code with cat - <a rel="license" href="https://www.facebook.com/thinhnguyen1105/">Created by Thinh Nguyen</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
+

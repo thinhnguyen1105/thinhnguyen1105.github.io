@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Let&#39;s code with cat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Feb 2021 21:18:19 +0700</lastBuildDate><atom:link href="https://codewithcat.live/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Mar 2021 23:08:25 +0700</lastBuildDate><atom:link href="https://codewithcat.live/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tối ưu hoá hệ thống VueJS (Phần 1)</title>
+      <link>https://codewithcat.live/post/create-template-vuejs-part-1/</link>
+      <pubDate>Sun, 28 Mar 2021 23:08:25 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/post/create-template-vuejs-part-1/</guid>
+      <description>Sau một thời gian làm việc với hệ thống web, đặc biệt là 2 năm qua với VueJs mình nhận thấy để có thể chạy được 1 PWA ( Progressive web app ) tốt thì cần một cái template project 🧑‍💻 thật chuẩn trước khi bắt tay vào xây dựng dự án. Ý mình template ở đây là một bộ source code chứa tất cả những practice tối ưu giúp cho dev code nhanh hơn, hệ thống chạy ổn định hơn, nhẹ hơn và sử dụng được hết những điểm mạnh của framework mình đang dùng ( có đồ trong tay phải biết dùng đúng k các bác =)) ).</description>
+    </item>
+    
     <item>
       <title>Tổng kết 2020 🌏</title>
       <link>https://codewithcat.live/post/report2020/</link>
