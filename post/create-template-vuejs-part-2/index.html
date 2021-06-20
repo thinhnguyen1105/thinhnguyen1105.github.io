@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title itemprop="name">Tối ưu hoá hệ thống VueJS (Phần 2) | Let&#39;s code with cat</title>
+<meta property="og:title" content="Tối ưu hoá hệ thống VueJS (Phần 2) | Let&#39;s code with cat" />
+<meta name="twitter:title" content="Tối ưu hoá hệ thống VueJS (Phần 2) | Let&#39;s code with cat" />
+<meta itemprop="name" content="Tối ưu hoá hệ thống VueJS (Phần 2) | Let&#39;s code with cat" />
+<meta name="application-name" content="Tối ưu hoá hệ thống VueJS (Phần 2) | Let&#39;s code with cat" />
+<meta property="og:site_name" content="Thinh Nguyen&#39;s Journey" />
+<meta name="description" content="Cuối cùng mình cũng tiếp tục viết series này sau một thời gian dài bận sấp mặt 😂. Quả thực là công việc viết blog">
+<meta name="author" content="Thinh Nguyen">
+<meta name="generator" content="Hugo 0.80.0" />
+ 
+  <meta itemprop="image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part2.jpg" />
+  <meta property="og:image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part2.jpg" /> 
+  <meta name="twitter:image" content="https://codewithcat.live/image/posts/vuejs/vuejs-part2.jpg" />
+  <meta name="twitter:image:src" content="https://codewithcat.live/image/posts/vuejs/vuejs-part2.jpg" /> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://codewithcat.live/css/style.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="https://codewithcat.live/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://codewithcat.live/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://codewithcat.live/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://codewithcat.live/favicon-16x16.png">
+<link rel="manifest" href="https://codewithcat.live/site.webmanifest">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" type="text/css">
+<link rel="alternate" href="https://codewithcat.live/index.xml" type="application/rss+xml" title="Let&#39;s code with cat">
+<title>Thinh Nguyen | Journey</title>
+</head>
+<body>
+
+<header>
+  <div class="container clearfix">
+  <a href="https://codewithcat.live/"><img href="https://codewithcat.live/" style="width: 36%;" src="https://codewithcat.live/image/logo-v3.svg"></a>
+    <div class="right">
+      
+        
+        <a class="path" href="https://codewithcat.live/pages/donate/">Donate</a>
+      
+        |
+        <a class="path" href="https://codewithcat.live/pages/">Pages</a>
+      
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+
+<main role="main" class="article">
+  
+<article class="single" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="meta">
+
+    <span class="key">published on</span>
+    <span class="val"><time itemprop="datePublished" datetime="2021-06-20">June 20, 2021</time></span>
+
+
+
+    <br>
+    <span class="key">tags:</span>
+    <span class="val">
+
+        <a href="https://codewithcat.live/tags/development">Development</a>
+
+        <a href="https://codewithcat.live/tags/front-end">Front-end</a>
+
+        <a href="https://codewithcat.live/tags/vuejs">VueJS</a>
+
+    </span>
+
+  </div>
+  <h1 class="headline" itemprop="headline">Tối ưu hoá hệ thống VueJS (Phần 2)</h1>
+  <section class="body" itemprop="articleBody">
+    <h1 id="tối-ưu-hệ-thống-vuejs-phần-2">Tối ưu hệ thống VueJS (Phần 2)</h1>
+<p>Cuối cùng mình cũng tiếp tục viết series này sau một thời gian dài bận sấp mặt 😂. Quả thực là công việc viết blog với một lập trình viên đòi hỏi sự sắp xếp thời gian vô cùng hợp lí và quan trọng nhất là vượt qua sự &ldquo;lười&rdquo; sau khi đi làm về và cần có một năng lượng muốn chia sẻ kiến thức với mọi người nữa =))) . Cảm ơn những lời động viên đã giúp mình có động lực viết tiếp những dòng này. Stay tuned 💪🏻</p>
+<p>Quay trở lại với kiến trúc của VueJS như đã nói ở bài trước, mình đã mô tả cách xây dựng store VueX, cách tạo repository theo factory để gọi API một cách &ldquo;siêu tiện&rdquo; và cách xây dựng global component để có thể dùng được ở khắp mọi nơi trong project. Kỳ này mình sẽ nói đến cách xây dựng plugin cho vue và các practice code với VueJS để có thể dev nhanh trong &ldquo;một nốt nhạc&rdquo; nhé =))</p>
+<h2 id="1-xây-dựng-plugin-cho-vue">1. Xây dựng plugin cho Vue</h2>
+<p>Nhìn chung plugin là một tool sở hữu 1 chức năng mà mình tự tạo ra trong project để có thể dùng ở bất kì đâu chỉ bằng 1 câu lệnh. Ví dụ thế này nhá, khi bạn muốn gọi một thông báo chứa message là &lsquo;Cập nhật thành công&rsquo; và hiển thị cho người dùng. Thay vì mình phải gọi ra một cái thông báo màu xanh → gán message cho nó → gọi nó để chạy và hiển thị cho người dùng → đóng thông báo, thì mình sẽ viết hết vào 1 plugin và gọi ra như này. So easy 🤟🏻</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$message</span>.<span style="color:#a6e22e">success</span>(<span style="color:#e6db74">&#34;Cập nhật thành công&#34;</span>);
+</code></pre></div><p>Vậy để tạo plugin thì mình cần làm như nào ?</p>
+<h3 id="bước-1-chuẩn-bị-ui-component">Bước 1: Chuẩn bị UI component</h3>
+<p>Tất nhiên là vẫn cần chuẩn bị cái hiển thị cho người dùng rùi</p>
+<p>mình sẽ tạo một component BaseMessage.vue như thế này nhé, mình dùng thư viện vuetify để có v-snackbar và điều khiển các trạng thái và màu sắc của component này qua biến message</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">&lt;<span style="color:#f92672">template</span>&gt;
+  &lt;<span style="color:#f92672">v</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">snackbar</span>
+    <span style="color:#a6e22e">v</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message.isDisplay&#34;</span>
+    <span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">color</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message.color&#34;</span>
+    <span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">timeout</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message.timeout ? message.timeout : 3000&#34;</span>
+  &gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;d-inline-flex pa-0&#34;</span>&gt;
+
+      &lt;<span style="color:#f92672">span</span>
+        <span style="color:#960050;background-color:#1e0010">:</span><span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">          `${message.color === &#39;white&#39; ? &#39;primary--text&#39; : &#39;white--text&#39;}`
+</span><span style="color:#e6db74">        &#34;</span>
+        &gt;{{ <span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">text</span> }}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span</span>
+      <span style="color:#f92672">&gt;</span>
+    &lt;/<span style="color:#f92672">div</span>&gt;
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/v-snackbar&gt;</span>
+&lt;/<span style="color:#f92672">template</span>&gt;
+&lt;<span style="color:#f92672">script</span>&gt;
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$message</span>.<span style="color:#a6e22e">messageData</span>
+    }
+  },
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">close</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$message</span>.<span style="color:#a6e22e">close</span>()
+    }
+  }
+}
+&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><p>Ok vậy là xong phần hiển thị cho người dùng, giờ mình sẽ đi tiếp đến phần tạo plugin. Plugin mình sẽ viết bằng javascript và ở trong folder plugins cho gọn code nhé</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// gọi component BaseMesssage để hiển thị
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">BaseMessage</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@/global/BaseMessage.vue&#34;</span>;
+<span style="color:#75715e">// khai báo cấu trúc message
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">messageData</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">isDisplay</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+    <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+    <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;error&#34;</span>,
+  },
+  <span style="color:#75715e">// hàm đóng message
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">close</span>() {
+    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">messageData</span>, { <span style="color:#a6e22e">isDisplay</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span> });
+  },
+  <span style="color:#75715e">// hàm hiển thị message theo màu sắc và chữ mình mong muốn
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">color</span>, <span style="color:#a6e22e">text</span>, <span style="color:#a6e22e">timeout</span>) {
+    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">messageData</span>, { <span style="color:#a6e22e">isDisplay</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">text</span>, <span style="color:#a6e22e">color</span>, <span style="color:#a6e22e">timeout</span> });
+  },
+  <span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">timeout</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">timeout</span>);
+  },
+  <span style="color:#a6e22e">success</span>(<span style="color:#a6e22e">msg</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;success&#34;</span>, <span style="color:#a6e22e">msg</span>);
+  },
+  <span style="color:#a6e22e">warning</span>(<span style="color:#a6e22e">msg</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;warning&#34;</span>, <span style="color:#a6e22e">msg</span>);
+  },
+  <span style="color:#a6e22e">loading</span>(<span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">timeout</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">show</span>(<span style="color:#e6db74">&#34;white&#34;</span>, <span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">timeout</span>);
+  },
+};
+<span style="color:#75715e">// export cho plugin để có thể cắm vào main.js để thành plugin
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">install</span>(<span style="color:#a6e22e">Vue</span>, <span style="color:#a6e22e">pluginName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$message&#34;</span>) {
+    <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">prototype</span>[<span style="color:#a6e22e">pluginName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">message</span>;
+    <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#34;plugin-message&#34;</span>, <span style="color:#a6e22e">BaseMessage</span>);
+  },
+};
+
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">message</span> };
+</code></pre></div><p>Sau khi đã có plugin thì mình sẽ cắm nó vào main.js để có thể gọi this.$message ở bất kì đâu trong project chạy js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// pluginHelper.js - mục đích là để import plugin nhanh hơn
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">plugins</span>) {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">install</span>(<span style="color:#a6e22e">Vue</span>) {
+        Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">plugins</span>).<span style="color:#a6e22e">forEach</span>(([<span style="color:#a6e22e">pluginName</span>, <span style="color:#a6e22e">plugin</span>]) =&gt; {
+          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">plugin</span>.<span style="color:#a6e22e">install</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">plugin</span>.<span style="color:#a6e22e">install</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;function&#34;</span>) {
+            <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">plugin</span>, <span style="color:#a6e22e">pluginName</span>);
+          } <span style="color:#66d9ef">else</span> {
+            <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">prototype</span>[<span style="color:#a6e22e">pluginName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">plugin</span>;
+          }
+        });
+      },
+    };
+  },
+};
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// main.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;vue&#34;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">message</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@/plugins/message.js&#34;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">pluginHelper</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@/helpers/pluginHelper.js&#34;</span>;
+
+<span style="color:#75715e">// vậy là từ nay lúc nào tạo plugin gì chỉ cần nhét plugin vào pluginHelper.create là xong
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(
+  <span style="color:#a6e22e">pluginHelper</span>.<span style="color:#a6e22e">create</span>({
+    <span style="color:#a6e22e">$message</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">message</span>,
+  })
+);
+</code></pre></div><h2 id="2-cách-code-siêu-nhanh-với-vuejs">2. Cách code siêu nhanh với VueJS</h2>
+<p>Mình có thấy các bạn dev front-end, khi đã code quen đến một mức độ nhất định thì sẽ code rất nhanh. Thậm chí không cần nghĩ vẫn có thể code được. Thực tế là mình nhận thấy các bạn đang viết lại một cái template của một framework hoặc một project mà cấu trúc của file đấy các bạn đã viết đến 1000 lần. Là một lập trình viên, mình luôn nghĩ đến cách tối hưu hiệu suất làm việc, nói trắng ra là code ít nhưng hiệu quả cao =)))) làm ít mà ăn nhiều. Cảm ơn vscode với snippet thần thánh có thể customize được và các bạn có thể tạo template chỉ bằng 1 &ldquo;chữ&rdquo;</p>
+<p>Ví dụ: khi mình code file repository để sinh ra API CRUD hay code store Vuex cho những API ấy thì thay vì viết từng dòng hay copy từ file khác sang sửa thì tạo 1 snippet sẽ giúp bạn tối ưu thời gian hơn rất nhiều. Và trông ngầu hơn nữa 😎</p>
+<p>Ok giờ đi tạo snippet nhé !!</p>
+<p>Trong Vscode các bạn gõ crlt + shift + p hoặc command + shift + p với macos</p>
+<p><img src="https://codewithcat.live/image/posts/vuejs/code-demo.png" alt="CodeDemo"></p>
+<p>Chọn vào configure user snippets</p>
+<p>Chọn ngôn ngữ mà bạn muốn viết snippet → vscode sẽ tự gợi ý khi ở trong file viết bằng ngôn ngữ đấy. Ở đây mình chọn javascript. Sau khi chọn các bạn sẽ thấy nó mở ra 1 file json có dạng như này, mình sẽ uncomment phần dưới example</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">{
+  <span style="color:#75715e">// Place your snippets for bat here. Each snippet is defined under a snippet name and has a prefix, body and
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// same ids are connected.
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// Example:
+</span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;Print to console&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;prefix&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;log&#34;</span>,
+    <span style="color:#e6db74">&#34;body&#34;</span><span style="color:#f92672">:</span> [
+      <span style="color:#e6db74">&#34;console.log(&#39;$1&#39;);&#34;</span>,
+      <span style="color:#e6db74">&#34;$2&#34;</span>
+    ],
+    <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Log output to console&#34;</span>
+  }
+}
+</code></pre></div><p>Sau khi save file thì sang một file js nào đó gõ thử log và enter thì nó sẽ tự ra console.log. Yeah, vậy chúng ta có thể tự tạo 1 template và gõ 1 lệnh là ra rồi</p>
+<p>Đây là file store mình đã custom cho template vue của mình để viết store nhanh hơn. Với $1, $2 là những điểm con trỏ dừng lại để mình có thể điền tên của đối tượng mà mình đang viết. \t là tab thụt vào dòng, và $0 là bỏ trống dòng đó</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">{
+  <span style="color:#e6db74">&#34;Vue template store &#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;prefix&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;storevue&#34;</span>,
+    <span style="color:#e6db74">&#34;body&#34;</span><span style="color:#f92672">:</span> [
+      <span style="color:#e6db74">&#34;import { RepositoryFactory } from &#39;@/api/factory/repositoryFactory&#39;&#34;</span>,
+      <span style="color:#e6db74">&#34;const $1 = RepositoryFactory.get(&#39;$1&#39;)&#34;</span>,
+      <span style="color:#e6db74">&#34;$0&#34;</span>,
+      <span style="color:#e6db74">&#34;const state = {&#34;</span>,
+      <span style="color:#e6db74">&#34;\t$1s: [],&#34;</span>,
+      <span style="color:#e6db74">&#34;\t$1: {},&#34;</span>,
+      <span style="color:#e6db74">&#34;};&#34;</span>,
+      <span style="color:#e6db74">&#34;$0&#34;</span>,
+      <span style="color:#e6db74">&#34;const actions = {&#34;</span>,
+      <span style="color:#e6db74">&#34;\tasync fetch({ commit }, params = {}) {&#34;</span>,
+      <span style="color:#e6db74">&#34;\t\tconst res = await $1.fetch({&#34;</span>,
+      <span style="color:#e6db74">&#34;\t\t\t...params,&#34;</span>,
+      <span style="color:#e6db74">&#34;\t\t});&#34;</span>,
+      <span style="color:#e6db74">&#34;\t\tcommit(&#39;set$1s&#39;, res.data);&#34;</span>,
+      <span style="color:#e6db74">&#34;\t\treturn res.data;&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;async fetchOne({ commit }, id) {&#34;</span>,
+      <span style="color:#e6db74">&#34;const res = await $1.fetchOne(id);&#34;</span>,
+      <span style="color:#e6db74">&#34;commit(&#39;setOne$1&#39;, res.data);&#34;</span>,
+      <span style="color:#e6db74">&#34;return res.data&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;async create(_, data) {&#34;</span>,
+      <span style="color:#e6db74">&#34;const res = await $1.create(data);&#34;</span>,
+      <span style="color:#e6db74">&#34;return res.data&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;async delete({ commit }, id) {&#34;</span>,
+      <span style="color:#e6db74">&#34;await $1.remove(id);&#34;</span>,
+      <span style="color:#e6db74">&#34;return commit(&#39;remove$1&#39;, id);&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;async update(_, { id, ...data }) {&#34;</span>,
+      <span style="color:#e6db74">&#34;const res = await $1.update(id, data);&#34;</span>,
+      <span style="color:#e6db74">&#34;return res.data&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;};&#34;</span>,
+      <span style="color:#e6db74">&#34;$0&#34;</span>,
+      <span style="color:#e6db74">&#34;const mutations = {&#34;</span>,
+      <span style="color:#e6db74">&#34;set$1s(state, data) {&#34;</span>,
+      <span style="color:#e6db74">&#34;return state.$1s = data;&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;remove$1(state, id) {&#34;</span>,
+      <span style="color:#e6db74">&#34;state.$1s = state.$1s.filter(val =&gt; val.id !== id)&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;setOne$1(state, data) {&#34;</span>,
+      <span style="color:#e6db74">&#34;state.$1 = data&#34;</span>,
+      <span style="color:#e6db74">&#34;}&#34;</span>,
+      <span style="color:#e6db74">&#34;};&#34;</span>,
+      <span style="color:#e6db74">&#34;$0&#34;</span>,
+      <span style="color:#e6db74">&#34;const getters = {&#34;</span>,
+      <span style="color:#e6db74">&#34;getAll: (state) =&gt; {&#34;</span>,
+      <span style="color:#e6db74">&#34;return state.$1s;&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;getOne: (state) =&gt; {&#34;</span>,
+      <span style="color:#e6db74">&#34;return state.$1;&#34;</span>,
+      <span style="color:#e6db74">&#34;},&#34;</span>,
+      <span style="color:#e6db74">&#34;};&#34;</span>,
+      <span style="color:#e6db74">&#34;export default {&#34;</span>,
+      <span style="color:#e6db74">&#34;namespaced: true,&#34;</span>,
+      <span style="color:#e6db74">&#34;state,&#34;</span>,
+      <span style="color:#e6db74">&#34;actions,&#34;</span>,
+      <span style="color:#e6db74">&#34;mutations,&#34;</span>,
+      <span style="color:#e6db74">&#34;getters,&#34;</span>,
+      <span style="color:#e6db74">&#34;}&#34;</span>,
+    ],
+    <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Template create vuex store&#34;</span>
+  },
+}
+</code></pre></div><p>Giờ thì tận hưởng thành quả nào =)))))))))) 😁😁😁😁😁</p>
+<p><img src="https://codewithcat.live/image/posts/vuejs/code-demo-1.png" alt="CodeDemo"></p>
+<p>Sau khi lưu xong là tự có cái gợi ý storevue khi gõ chữ store nhé =))). Và tiếp theo là điều kì diệu</p>
+<p><img src="https://codewithcat.live/image/posts/vuejs/code-demo-2.png" alt="CodeDemo"></p>
+<p><img src="https://codewithcat.live/image/posts/vuejs/code-demo-3.png" alt="CodeDemo"></p>
+<p>Sau khi hiện template thì có tất cả các con trỏ, mình chỉ cần điền tên cho đối tượng mình muốn tạo store là xong. Bravo !! hi vọng những cách này sẽ giúp bạn code nhanh hơn trên con đường làm lập trình viên của bạn. 🔥🔥🔥🔥</p>
+
+  </section>
+</article>
+<div id="graphcomment"></div>
+<script type="text/javascript">
+
+   
+
+  
+  window.gc_params = {
+    graphcomment_id: 'codewithcat110597',
+
+    
+    fixed_header_height: 0,
+  };
+
+   
+
+  
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.src = 'https://graphcomment.com/js/integration.js?' + Math.round(Math.random() * 1e8);
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+
+</script>
+
+</main>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="copyright">&copy; 2021 Let&#39;s code with cat - <a rel="license" href="https://www.facebook.com/thinhnguyen1105/">Created by Thinh Nguyen</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
+

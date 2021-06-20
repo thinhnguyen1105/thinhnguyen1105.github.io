@@ -6,7 +6,16 @@
     <description>Recent content in Front-end on Let&#39;s code with cat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Mar 2021 23:08:25 +0700</lastBuildDate><atom:link href="https://codewithcat.live/tags/front-end/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Jun 2021 12:30:00 +0700</lastBuildDate><atom:link href="https://codewithcat.live/tags/front-end/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tối ưu hoá hệ thống VueJS (Phần 2)</title>
+      <link>https://codewithcat.live/post/create-template-vuejs-part-2/</link>
+      <pubDate>Sun, 20 Jun 2021 12:30:00 +0700</pubDate>
+      
+      <guid>https://codewithcat.live/post/create-template-vuejs-part-2/</guid>
+      <description>Tối ưu hệ thống VueJS (Phần 2) Cuối cùng mình cũng tiếp tục viết series này sau một thời gian dài bận sấp mặt 😂. Quả thực là công việc viết blog với một lập trình viên đòi hỏi sự sắp xếp thời gian vô cùng hợp lí và quan trọng nhất là vượt qua sự &amp;ldquo;lười&amp;rdquo; sau khi đi làm về và cần có một năng lượng muốn chia sẻ kiến thức với mọi người nữa =))) .</description>
+    </item>
+    
     <item>
       <title>Tối ưu hoá hệ thống VueJS (Phần 1)</title>
       <link>https://codewithcat.live/post/create-template-vuejs-part-1/</link>
